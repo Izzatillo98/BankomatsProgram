@@ -11,6 +11,7 @@ namespace BankomatsProgram
             static void Login(string text)
             {
                 Console.WriteLine(text);
+
             }
         }
 

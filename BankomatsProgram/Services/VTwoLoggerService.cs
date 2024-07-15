@@ -16,8 +16,6 @@ namespace BankomatsProgram.Services
             Console.Clear();
 
             Console.WriteLine(message);
-        }
-    
-
+        }    
     }
 }

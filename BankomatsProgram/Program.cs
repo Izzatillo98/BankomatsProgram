@@ -8,7 +8,6 @@ namespace BankomatsProgram
         {
             BankomatService service = new BankomatService();
             service.UserInterfaceEnter();
-                      
         }
         
     }

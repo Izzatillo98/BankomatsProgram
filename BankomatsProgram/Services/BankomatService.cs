@@ -13,13 +13,11 @@ namespace BankomatsProgram.BankomatsServices
         {
             this.logger = new VTwoLoggerService();
         }
-
         public void UserInterfaceEnter()
         {
             bool isContinue = true;
             do
             {
-
                 try
                 {
                     logger.Log("Good day! This program for use bankomat");
@@ -35,9 +33,7 @@ namespace BankomatsProgram.BankomatsServices
                         case 3: FillToBalance(); break;
 
                         default: logger.Log("Please enter the number between 1 to 3"); break;
-
                     }
-
                 }
                 catch (FormatException FormatException)
                 {
@@ -78,7 +74,6 @@ namespace BankomatsProgram.BankomatsServices
                 logger.Log("Wrong Password. Please try again!");
             }
         }
-
         private void WithdrawFromBalance()
         {
             logger.Log("Enter the password");
@@ -121,11 +116,8 @@ namespace BankomatsProgram.BankomatsServices
                     default:
                         logger.Log("Please enter number between 1 to 4"); break;
                 }
-
             }
-        }
-       
-
+        }      
         private void CheckBalanse()
         {
             logger.Log("Enter the password");

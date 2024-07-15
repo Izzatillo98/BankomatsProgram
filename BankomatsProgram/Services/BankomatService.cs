@@ -1,10 +1,19 @@
-﻿using BankomatsProgram.Model;
+﻿using BankomatsProgram.Interfaces;
+using BankomatsProgram.Model;
+using BankomatsProgram.Services;
 using System;
 namespace BankomatsProgram.BankomatsServices
 {
     public class BankomatService 
-    {
+    {       
         PlastCard plastCard = new PlastCard();
+
+        private ILoggerService logger;
+        public BankomatService()
+        {
+            this.logger = new VTwoLoggerService();
+        }
+
         public void UserInterfaceEnter()
         {
             bool isContinue = true;
@@ -13,8 +22,8 @@ namespace BankomatsProgram.BankomatsServices
 
                 try
                 {
-                    Login("Good day! This program for use bankomat");
-                    Login("\t\n1=> Chesk Balance \t\n2=> Withdraw From Balance\t\n3=>  Fill to Balance\n ");
+                    logger.Log("Good day! This program for use bankomat");
+                    logger.Log("\t\n1=> Chesk Balance \t\n2=> Withdraw From Balance\t\n3=>  Fill to Balance\n ");
                     Console.Write("Your choise: ");
                     string inputUser = Console.ReadLine();
                     int userInput = Convert.ToInt32(inputUser);
@@ -25,20 +34,20 @@ namespace BankomatsProgram.BankomatsServices
                         case 2: WithdrawFromBalance(); break;
                         case 3: FillToBalance(); break;
 
-                        default: Login("Please enter the number between 1 to 3"); break;
+                        default: logger.Log("Please enter the number between 1 to 3"); break;
 
                     }
 
                 }
                 catch (FormatException FormatException)
                 {
-                    Login("You should enter only number. Please try again");
+                    logger.Log("You should enter only number. Please try again");
                     IsContinue();
                 }
                 catch (Exception ex)
                 {
-                    Login(ex.Message);
-                    Login("Please tell to Admin {https://t.me/Itsmetillo} ");
+                    logger.Log(ex.Message);
+                    logger.Log("Please tell to Admin {https://t.me/Itsmetillo} ");
                 }
 
             } while (IsContinue());
@@ -46,14 +55,14 @@ namespace BankomatsProgram.BankomatsServices
         public bool IsContinue()
         {
             bool isContinue = true;
-            Login("Do you want continue press (yes/+) ");
+            logger.Log("Do you want continue press (yes/+) ");
             string userInput = Console.ReadLine();
             isContinue = userInput is "yes" or "+";
             return isContinue;
         }
         private void FillToBalance()
         {
-            Login("Enter the password");
+            logger.Log("Enter the password");
             string inputPassword = Console.ReadLine();
             if (inputPassword != null && inputPassword == plastCard.PlastCardPassword)
             {
@@ -62,21 +71,21 @@ namespace BankomatsProgram.BankomatsServices
                 decimal priceInput = Convert.ToDecimal(inputPrice);
                 plastCard.PlastCardBalance = plastCard.PlastCardBalance + priceInput;
 
-                Login("Succesfully");
+                logger.Log("Succesfully");
             }
             else
             {
-                Login("Wrong Password. Please try again!");
+                logger.Log("Wrong Password. Please try again!");
             }
         }
 
         private void WithdrawFromBalance()
         {
-            Login("Enter the password");
+            logger.Log("Enter the password");
             string inputPassword = Console.ReadLine();
             if (inputPassword != null && inputPassword == plastCard.PlastCardPassword)
             {
-                Login(" 1=> 10$\n 2=> 20$\n 3=> 50$\n 4=> Your choise");
+                logger.Log(" 1=> 10$\n 2=> 20$\n 3=> 50$\n 4=> Your choise");
                 string checkInput = Console.ReadLine();
                 int inputCheck = Convert.ToInt32(checkInput);
                 switch (inputCheck)
@@ -110,23 +119,20 @@ namespace BankomatsProgram.BankomatsServices
             
                         break;
                     default:
-                        Login("Please enter number between 1 to 4"); break;
+                        logger.Log("Please enter number between 1 to 4"); break;
                 }
 
             }
         }
-        static void Login(string text)
-        {
-            Console.WriteLine(text);
-        }
+       
 
         private void CheckBalanse()
         {
-            Login("Enter the password");
+            logger.Log("Enter the password");
             string inputPassword = Console.ReadLine();
             if (inputPassword != null && inputPassword == plastCard.PlastCardPassword)
             {
-                Login($"Your balance have: {plastCard.PlastCardBalance}$");
+                logger.Log($"Your balance have: {plastCard.PlastCardBalance}$");
        
             }
         }               

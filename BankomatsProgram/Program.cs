@@ -8,10 +8,7 @@ namespace BankomatsProgram
         {
             BankomatService service = new BankomatService();
             service.UserInterfaceEnter();
-
-            Loger loger = new V1();
-            loger.Login();
-
+                      
         }
         
     }

@@ -38,7 +38,9 @@ namespace BankomatsProgram.BankomatsServices
                             FillToBalance(); 
                             break;
 
-                        default: logger.Log("Please enter the number between 1 to 3"); break;
+                        default: 
+                            logger.Log("Please enter the number between 1 to 3"); 
+                            break;
                     }
                 }
                 catch (FormatException FormatException)

@@ -17,7 +17,7 @@ namespace BankomatsProgram.BankomatsServices
         {
             bool isContinue = true;
             do
-            {
+            { 
                 try
                 {
                     logger.Log("Good day! This program for use bankomat");

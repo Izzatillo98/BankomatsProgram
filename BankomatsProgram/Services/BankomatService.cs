@@ -29,7 +29,7 @@ namespace BankomatsProgram.BankomatsServices
                     switch (userInput)
                     {
                         case 1:
-                            CheckBalanse() ;
+                            CheckBalanse();
                             break;
                         case 2:
                             WithdrawFromBalance();

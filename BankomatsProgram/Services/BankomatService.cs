@@ -28,7 +28,7 @@ namespace BankomatsProgram.BankomatsServices
 
                     switch (userInput)
                     {
-                        case 1:  
+                        case 1:   
                             CheckBalanse();
                             break;
                         case 2:
